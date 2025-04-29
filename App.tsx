@@ -49,14 +49,18 @@ function App(): React.JSX.Element {
   };
 
   const filterItems = (text: string) => {
-    setInputText(text)
-    const newItems = rowItems.filter(item => item.name.includes(text))
-    setItemsToShow(newItems)
-  }
+    setInputText(text);
+    const newItems = rowItems.filter(item => item.name.includes(text));
+    setItemsToShow(newItems);
+  };
 
   return (
     <View style={{flex: 1, backgroundColor: 'white', padding: 8}}>
-    <TextInput value={inputText} onChangeText={(newText) => filterItems(newText)} style={{borderColor: 'black', borderWidth: 1, color: 'black'}}/>
+      <TextInput
+        value={inputText}
+        onChangeText={newText => filterItems(newText)}
+        style={{borderColor: 'black', borderWidth: 1, color: 'black'}}
+      />
       <LegendList
         data={itemsToShow}
         recycleItems={true}
@@ -68,9 +72,6 @@ function App(): React.JSX.Element {
 }
 
 export default App;
-
-
-
 
 interface RowItemProps {
   item: RowItem;
@@ -85,11 +86,18 @@ const RowItemCard = (props: RowItemProps) => {
     'pink',
     'teal',
     'black',
-    'grey'
+    'grey',
   ];
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
   return (
-    <View style={{padding: 20, borderRadius: 4, borderColor: 'black', borderWidth: 1, overflow: 'hidden'}}>
+    <View
+      style={{
+        padding: 20,
+        borderRadius: 4,
+        borderColor: 'black',
+        borderWidth: 1,
+        overflow: 'hidden',
+      }}>
       <View style={{height: 200, backgroundColor: randomColor}} />
       <Text style={{color: 'black'}}>{props.item.name}</Text>
       <Text style={{color: 'black'}}>{props.item.desc}</Text>
